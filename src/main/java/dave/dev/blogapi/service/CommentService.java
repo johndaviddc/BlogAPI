@@ -31,4 +31,13 @@ public class CommentService {
             throw new ResourceNotFoundException("Post with ID " + postId + " not found.");
         }
     }
+
+    public Comment updateComment(Long commentId, Comment updatedComment) {
+        if (commentRepository.existsById(commentId)) {
+            updatedComment.setId(commentId);
+            return commentRepository.save(updatedComment);
+        } else {
+            throw new ResourceNotFoundException("Comment with ID " + commentId + " not found.");
+        }
+    }
 }
