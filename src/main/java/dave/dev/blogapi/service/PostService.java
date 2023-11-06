@@ -1,5 +1,6 @@
 package dave.dev.blogapi.service;
 
+import dave.dev.blogapi.exception.ResourceNotFoundException;
 import dave.dev.blogapi.model.Post;
 import dave.dev.blogapi.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
