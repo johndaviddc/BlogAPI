@@ -40,4 +40,12 @@ public class CommentService {
             throw new ResourceNotFoundException("Comment with ID " + commentId + " not found.");
         }
     }
+
+    public void deleteComment(Long commentId) {
+        if (commentRepository.existsById(commentId)) {
+            commentRepository.deleteById(commentId);
+        } else {
+            throw new ResourceNotFoundException("Comment with ID " + commentId + " not found.");
+        }
+    }
 }
