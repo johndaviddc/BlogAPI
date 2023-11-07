@@ -4,10 +4,8 @@ import dave.dev.blogapi.exception.ResourceNotFoundException;
 import dave.dev.blogapi.model.Post;
 import dave.dev.blogapi.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,11 @@ public class PostController {
     public Post getPostById(@PathVariable Long postId) {
         return postService.getPostById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post with ID " + postId + " not found."));
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Post createPost(@RequestBody Post post) {
+        return postService.createPost(post);
     }
 }
