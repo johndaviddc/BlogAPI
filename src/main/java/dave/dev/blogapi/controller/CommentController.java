@@ -1,9 +1,10 @@
 package dave.dev.blogapi.controller;
 
+import dave.dev.blogapi.model.Comment;
 import dave.dev.blogapi.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/post/{postId}/comments")
@@ -14,5 +15,10 @@ public class CommentController {
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
-    
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Comment createComment(@PathVariable Long postId, @RequestBody Comment comment) {
+        return commentService.createComment(postId, comment);
+    }
 }
